@@ -41,7 +41,11 @@
 \newcommand{\bibtitleauthorconf}{В сборниках трудов конференций}
 \newcommand{\bibtitleauthorpatent}{Зарегистрированные патенты}
 \newcommand{\bibtitleauthorprogram}{Зарегистрированные программы для ЭВМ}
-
+\newcommand{\markup}[1]{%
+	\ifnum\value{showmarkup}=1
+	\textbf{[#1]} % Показываем пометку в жирном шрифте
+	\fi
+}
 % для стиля библиографии `\insertbiblioauthorimportant`:
 \newcommand{\bibtitleauthorimportant}{Наиболее значимые \protect\MakeLowercase\bibtitleauthor}
 
