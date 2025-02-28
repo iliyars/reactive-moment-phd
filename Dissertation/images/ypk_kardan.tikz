@@ -1,0 +1,47 @@
+
+	\begin{tikzpicture}[scale=1.6, >=stealth, font=\small]
+		%X0Y0Z0 axis
+		\draw [->, very thick] (13.75,13.25) -- (13.75,16.25)node[above] {$Y_0$};
+		\draw [->, very thick] (13.75,13.25) -- (11.5,11.5) node[above] {$X_0$};
+		\draw [->,very thick] (13.75,13.25) -- (11.25,13.75) node[above] {$Z_0$};
+		\node at (13.85, 13.15) {$0_0$};
+		%Z0 line
+		\draw [thin, short] (11.25,13.75) -- (16.25,12.75);
+		%Z line
+		\draw [thin, short] (13.75,13.25) -- (16.75,13);
+		
+		%X0Y0Z0 axis proection
+		\draw [thin] (10,8.25) -- (10,10.75) node[above] {$Y_0$};
+		\draw [thin] (10,8.25) -- (7.5,8.75) node[above] {$Z_0$};
+		\draw [thin] (10,8.25) -- (7.5,6.5) node[above] {$X_0$};
+		
+		
+		%proection Z0 line
+		\draw [thin, short] (7.5,8.75) -- (12.5,7.75);
+		\draw [line width=0.9pt, ->,] (10,8.25) -- (10,10) node[right] {$Mda$};
+		%OXYZ axis
+		\draw [ ->, very thick] (10,8.25) -- (9.75,6.25) node[left] {$X$};
+		\draw [->, very thick] (10,8.25) -- (9.32, 10.2) node[above] {$Y$};
+		\draw[thick,->] (10, 10) arc[start angle=5,end angle=175,x radius=0.3cm, y radius=0.2cm];
+		\node at (9.7, 10.3) {$\beta$};
+		\draw [ ->, very thick] (10,8.25) -- (7,8.5) node[above] {$Z$};
+		\node at (10.15,8.35) {$0$};
+		\draw[thick,->] (8.8,8.5) arc[start angle=0,end angle=85,radius=-1.2cm];
+		\node at (9.5, 7.5) {$\alpha$};
+		%red line
+		\draw [ color={rgb,255:red,245; green,0; blue,0}, line width=1.6pt, short] (13.75,13.25) -- (10,8.25);
+		\node at (11, 10)[text=red] {$R$};
+		\draw [ color=red, line width=0.2pt, ->,] (10,8.25) -- (9.75,9)node[left] {$Fb$};
+		
+		
+		
+		\draw [line width=0.9pt, ->,] (10,8.25) -- (7.8,8.43) node[above] {$Mdb$};
+		\draw [ color=red, line width=0.2pt, ->,] (10,8.25) -- (8.5,8.37) node[above] {$Fa$};
+		%blue circle
+		\draw [ color={rgb,255:red,4; green,45; blue,251} , fill={rgb,255:red,45; green,166; blue,240}, line width=0.2pt ] (9.83,7) circle (0.25cm);
+		
+		
+		
+		\draw [ color=blue, very thick, short] (10,8.25) -- (9.83,7);
+		\node at (10, 7.5)[text=blue] {$r$};
+		\end{tikzpicture}
