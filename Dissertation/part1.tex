@@ -112,25 +112,25 @@
 
 Узел зеркал неуравновешен относительно внутренней оси карданова подвеса. Центр масс узла зеркал $О_1$ смещён относительно центра карданова подвеса на расстояние $r$. Центр карданова подвеса $О$ имеет координаты $R_x$,$R_y$,$R_z$ в неподвижной системе координат $О_0X_0Y_0Z_0$. Для разворота узла зеркал на углы $\alpha$ и $\beta$ по соответствующим осям создаются моменты $M_da$ и $M_db$ при помощи приводов. Эти моменты одновременно приводят в движение компенсационные маховики приводов и узел зеркал. В свою очередь, узел зеркал (с подвижными элементами карданова подвеса) имеет собственные моменты инерции $J_da$ и $J_db$ относительно осей, связанных с центром карданова подвеса. К центру масс узла зеркал будут приложены силы $F_a$ и $F_b$, приводящие узел зеркал в движение, тогда к основанию КА в точке, соответствующей центру карданова подвеса, будут приложены силы $F_a$ и $F_b$, направленные в противоположную сторону.
 
-Если центр масс КА (точка $О_0$) и центр карданова подвеса (точка $О$) не совпадают, то к КА будут приложены реактивные моменты, вызванные силами $F_a$ и $F_b$. С другой стороны, двигатели приводов приводят во вращение маховики, что сопровождается возникновением  соответствующих моментов $M_ma$ и $M_mb$ реакции на КА. Результирующие реактивные моменты можно рассчитать как сумму всех перечисленных воздействий.
+Если центр масс КА (точка $O_0$) и центр карданова подвеса (точка $О$) не совпадают, то к КА будут приложены реактивные моменты, вызванные силами $F_a$ и $F_b$. С другой стороны, двигатели приводов приводят во вращение маховики, что сопровождается возникновением  соответствующих моментов $M_ma$ и $M_mb$ реакции на КА. Результирующие реактивные моменты можно рассчитать как сумму всех перечисленных воздействий.
 
 Сканирующее зеркало связано кинематически с зеркальным блоком через рычажный механизм, который с высокой точностью делит угол поворота $\beta$ зеркального блока на 2 и поворачивает сканирующее зеркало на угол $\beta/2$ вокруг оси $OZ$. Поэтому момент инерции сканирующего зеркала может быть включён в момент инерции $J_db$.
 
 Таким образом, к основанию приложены реактивные моменты, некоторые из которых можно представить в виде соответствующих пар сил:\\
 
 \begin{samepage}
-\begin{equation}
-	\label{}
-	\begin{alignedat}{2}
-		M_{ra} = F_a r + M_{da} - M_{ma}
-	\end{alignedat}
-\end{equation}
-\begin{equation}
-	\label{}
-	\begin{alignedat}{2}
-		M_{rb} = F_b r + M_{db} - M_{mb}
-	\end{alignedat}
-\end{equation}
+	\begin{equation}
+		\label{eq:eq_Mra}
+		\begin{alignedat}{2}
+			M_{ra} &= F_a r + M_{da} - M_{ma}
+		\end{alignedat}
+	\end{equation}
+	\begin{equation}
+		\label{eq:eq_Mrb}
+		\begin{alignedat}{2}
+			M_{rb} &= F_b r + M_{db} - M_{mb}
+		\end{alignedat}
+	\end{equation}
 
 \begin{align*}
 	\text{где}     			& \quad M_{da}= \epsilon_{da}J_{da};\\           
@@ -138,67 +138,183 @@
 	           				& \quad F_b = \frac{M_{db}-M_{mb}}{r}; \\
 	             			& \quad J_{ma}, J_{mb} - \textnormal{моменты инерции компенсационных маховиков, установленных по осям $O_1Y_0$ и $O_1Z$}         \\
 							& \quad \epsilon_{da}, \epsilon_{db} -\textnormal{ углы ускорения подвижных частей карданова подвеса по соответствующим углам поворота}          \\
+							& \quad \epsilon_{ma}, \epsilon_{mb} - \textnormal{угловые ускорения подвижных частей карданова подвеса по соответствующим углам поворота}
 \end{align*}
 \end{samepage}
 
-\section{Ссылки}\label{sec:ch1/sec2}
+Спроецируем силы $F_a$ И $F_b$, приложенные к центру карданова подвеса, на оси неподвижной системы координат $O_0X_0Y_0Z_0$:
+\begin{samepage}
+	\begin{equation}
+		\label{eq:eq_F0_proect}
+		\begin{aligned}
+			F_{X_0} &= F_a\sin(\alpha)+F_b\sin(\beta)\cos(\alpha) \\
+			F_{Y_0} &=F_b\cos(\beta) \\
+			F_{Z_0} &= F_a\cos(\alpha)-F_b\sin(\alpha)\sin(\beta)
+		\end{aligned}	
+	\end{equation}
+\end{samepage}
 
-Сошлёмся на библиографию.
-Одна ссылка: \cite[с.~54]{Sokolov}\cite[с.~36]{Gaidaenko}.
-Две ссылки: \cite{Sokolov,Gaidaenko}.
-Ссылка на собственные работы: \cite{vakbib1, confbib2}.
-Много ссылок: %\cite[с.~54]{Lermontov,Management,Borozda} % такой «фокус»
-%вызывает biblatex warning относительно опции sortcites, потому что неясно, к
-%какому источнику относится уточнение о страницах, а bibtex об этой проблеме
-%даже не предупреждает
-\cite{Lermontov, Management, Borozda, Marketing, Constitution, FamilyCode,
-    Gost.7.0.53, Razumovski, Lagkueva, Pokrovski, Methodology, Berestova,
-    Kriger}%
-\ifnumequal{\value{bibliosel}}{0}{% Примеры для bibtex8
-    \cite{Sirotko, Lukina, Encyclopedia, Nasirova}%
-}{% Примеры для biblatex через движок biber
-    \cite{Sirotko2, Lukina2, Encyclopedia2, Nasirova2}%
-}%
-.
-И~ещё немного ссылок:~\cite{Article,Book,Booklet,Conference,Inbook,Incollection,Manual,Mastersthesis,
-    Misc,Phdthesis,Proceedings,Techreport,Unpublished}
-% Следует обратить внимание, что пробел после запятой внутри \cite{}
-% обрабатывается ожидаемо, а пробел перед запятой, может вызывать проблемы при
-% обработке ссылок.
-\cite{medvedev2006jelektronnye, CEAT:CEAT581, doi:10.1080/01932691.2010.513279,
-    Gosele1999161,Li2007StressAnalysis, Shoji199895, test:eisner-sample,
-    test:eisner-sample-shorted, AB_patent_Pomerantz_1968, iofis_patent1960}%
-\ifnumequal{\value{bibliosel}}{0}{% Примеры для bibtex8
-}{% Примеры для biblatex через движок biber
-    \cite{patent2h, patent3h, patent2}%
-}%
-.
+Нетрудно показать, что эти силы, приложенные к КА в точке $О$, создадут моменты относительно центра масс $О_0$. С учётом ~\cref{eq:eq_Mra, eq:eq_Mrb} для проекций момента возмущения на оси КА получим:
+\begin{samepage}
+	\begin{equation}
+		\label{eq:eq_M_proect}
+		\begin{aligned}
+			M_{X_0} &= F_{Z_0}R_Y+F_{Y_0}R_Z+(M_da-M_ma)\sin(\alpha) \\
+			M_{Y_0} &= F_{X_0}R_Z+F_{Z_0}R_X+(M_da-Mma)\\
+			M_{Z_0} &= F_{Y_0}R_X+(M_db-M_mb)\cos(\alpha)
+		\end{aligned}	
+	\end{equation}
+\end{samepage}
 
-\ifnumequal{\value{bibliosel}}{0}{% Примеры для bibtex8
-Попытка реализовать несколько ссылок на конкретные страницы
-для \texttt{bibtex} реализации библиографии:
-[\citenum{Sokolov}, с.~54; \citenum{Gaidaenko}, с.~36].
-}{% Примеры для biblatex через движок biber
-Несколько источников (мультицитата):
-% Тут специально написано по-разному тире, для демонстрации, что
-% применение специальных тире в настоящий момент в biblatex приводит к непоказу
-% "с.".
-\cites[vii--x, 5, 7]{Sokolov}[v"--~x, 25, 526]{Gaidaenko}[vii--x, 5, 7]{Techreport},
-работает только в \texttt{biblatex} реализации библиографии.
-}%
+Подставим проекции сил из уравнения ~\cref{eq:eq_F0_proect} в ~\cref{eq:eq_M_proect}, получим:
+\begin{samepage}
+	\begin{equation}
+		\label{eq:eq_M_proect_F}
+		\begin{aligned}
+			M_{X_0} &= F_a\cos(\alpha)-F_b\sin(\alpha)\sin(\beta)R_Y+F_{Y_0}R_Z+(M_{da}-M_{ma})\sin(\alpha) \\
+			M_{Y_0} &= F_a\sin(\alpha)+F_b\sin(\beta)\cos(\alpha)R_Z+F_{Z_0}R_X+(M_{da}-M{ma})\\
+			M_{Z_0} &= F_b\cos(\beta)R_X+(M_{db}-M_{mb})\cos(\alpha)
+		\end{aligned}	
+	\end{equation}
+\end{samepage}
 
-Ссылки на собственные работы:~\cite{vakbib1, confbib1}.
+В выражении ~\cref{eq:eq_M_proect_F} проекции моментов на оси состоят их суммы двух частей моментов, возникающих от смещения центра карданова подвеса относительно центра масс КА (слагаемые, содержащие $R_X$,$R_Y$,$R_Z$), и моментов, возникающих из-за неполной компенсации моментов двигателей моментами соответствующих маховиков. 
 
-Сошлёмся на приложения: Приложение~\cref{app:A}, Приложение~\cref{app:B2}.
 
-Сошлёмся на формулу: формула~\cref{eq:equation1}.
 
-Сошлёмся на изображение: рисунок~\cref{fig:knuth}.
+\section{Пример расчёта остаточных реактивных моментов на основание}\label{sec:ch1/sec2}
 
-Стандартной практикой является добавление к ссылкам префикса, характеризующего тип элемента.
-Это не является строгим требованием, но~позволяет лучше ориентироваться в документах большого размера.
-Например, для ссылок на~рисунки используется префикс \textit{fig},
-для ссылки на~таблицу "--- \textit{tab}.
+$M_{X_0}$, $M_{Y_0}$, $M_{Z_0}$ – суммарные значения реактивных моментов, действующих на КА по соответствующим осям, – рассчитываются по следующим выражениям:
+
+\begin{samepage}
+	\begin{equation}
+		\label{eq:eq_M_proect_first}
+		\begin{aligned}
+			M_{X_0}&=M_{X_c}+M_{X_1} \\
+			M_{Y_0}&=M_{Y_c}+M_{Y_1} \\
+			M_{Z_0}&=M_{Z_c}+M_{Z_1} \\
+		\end{aligned}	
+	\end{equation}
+	
+\begin{align*}
+	\text{где} \quad
+	M_{X_c} &= \left(F_a \cos(\alpha) - F_b \sin(\alpha) \sin(\beta)\right) R_Y + F_B \cos(\beta) R_Z, \\
+	M_{Y_c} &= \left(F_a \sin(\alpha) - F_b \sin(\beta) \cos(\alpha)\right) R_Z + \left(F_a \cos(\alpha) + F_b \sin(\alpha) \sin(\beta)\right) R_X, \\
+	M_{Z_c} &= F_b \cos(\beta) R_X
+\end{align*}
+\end{samepage}
+
+Моменты $M_{Xc}$, $M_{Yc}$, $M_{Zc}$ возникают из-за смещения центра масс КА относительно центра карданова подвеса на величины $R_x$, $R_y$, $R_z$ соответственно.
+\begin{equation}
+	\label{eq:eq_M1_proect}
+	\begin{aligned}
+		M_{X_1}&=(M_{db}-M_{mb})\sin(\alpha) \\
+		M_{Y_1}&=M_{da}-M_{ma} \\
+		M_{Z_1}&=M_{db}-M_{mb}\cos(\alpha) \\
+	\end{aligned}	
+\end{equation}
+Моменты $M_{X1}$, $M_{Y1}$, $M_{Z1}$, возникают из-за неполной компенсации реактивных моментов маховиками.
+
+Для расчёта остаточных реактивных моментов зададимся следующими значениями параметров (Таблица~\cref{tab:unit:init_data})
+
+\begin{table}
+	\centering
+	\begin{threeparttable}
+		\caption{Исходные данные}
+		\label{tab:unit:init_data}
+		\begin{tabular}{llc}
+			\toprule
+			Параметр                  & Значение              & Размерность             \\
+			\midrule
+			$\omega_\text{max}$       & 0,127      				& \si{\text{рад}/\text{с}}       \\
+			$\phi_\text{max}$         & 0,297           		& \si{\text{рад}/\text{с}}            \\
+			$T_\text{пер}$            & 4          				& \si{c}           \\
+			$J_a$                     & 2,84           			& \si{\text{кг}.\text{м}^2}            \\
+			$J_b$                     & 1,9      				& \si{\text{кг}.\text{м}^2}        \\
+			$r$                       & 0,3          			& \si{\text{м}}           \\
+			$R_X$                     & 1,212          			& \si{\text{м}}           \\
+			$R_Y$                     & 0,28  					& \si{\text{м}}   \\
+			$R_Z$                     & 0,015         			& \si{\text{м}}          \\
+			$J_{ma}$                  & 0,0169                	& \si{\text{кг}.\text{м}^2}           \\
+			$J_{mb}$                  & 0,011317              	& \si{\text{кг}.\text{м}^2}           \\
+			$\alpha$                  & 5                     	& \si{\degree}          \\
+			$\beta$                   & 5                     	& \si{\degree}          \\
+			\bottomrule
+		\end{tabular}
+	\end{threeparttable}
+\end{table}
+
+Пользуясь формулами ~\eqref{eq:eq_Mra}-\eqref{eq:eq_M1_proect} и исходными данными таблицы ~\cref{tab:unit:init_data}, получим расчётные значения параметров (таблицы ~\cref{tab:unit:calcData1} и ~\cref{tab:unit:resultData}).
+
+
+\begin{table}
+	\centering
+	\begin{threeparttable}
+		\caption{Расчётные значения}
+		\label{tab:unit:calcData1}
+		\begin{tabular}{llc}
+			\toprule
+			Параметр             		& Значение              & Размерность             		\\
+			\midrule
+			$\alpha$       				& 0,0873      			& \si{\text{рад}}      			\\
+				$\beta$         		& 0,0873           		& \si{\text{рад}}            	\\
+				$T_p$            		& 1,6614          		& \si{\text{c}}           				\\
+				$T_n$                   & 0,6772           		& \si{\text{c}}            		\\
+				$\epsilon_a$            & 0,1270      			& \si{\text{рад}/\text{с}}       \\
+				$\epsilon_b$            & 0,1270          		& \si{\text{рад}/\text{с}}     \\
+				$M_{da}$                & 0,3607          		& \si{\text{H}.\text{м}}          \\
+				$M_{db}$                & 0,2413  				& \si{\text{H}.\text{м}}   \\
+				$F_a$                   & 0,0504         		& \si{\text{H}}         \\
+				$F_b$                  	& 0,0378                & \si{\text{H}}          \\
+				$F_X$                  	& 0,0077              	& \si{\text{H}}           \\
+				$F_Y$                  	& 0,0377                & \si{\text{H}}          \\
+				$F_Z$                   & 0,0499                & \si{\text{H}}          \\
+			\bottomrule
+		\end{tabular}
+	\end{threeparttable}
+\end{table}
+
+\begin{table}
+	\centering
+	\begin{threeparttable}
+		\caption{Результаты расчёта}
+		\label{tab:unit:resultData}
+		\begin{tabular}{llc}
+			\toprule
+			Параметр             		& Значение              & Размерность             		\\
+			\midrule
+			$M_{Xc}$       				& 0,0145      			& \si{\newton\metre}      			\\
+			$M_{Yc}$         			& 0,0606           		& \si{\newton\metre}          	\\
+			$M_{Zc}$            		& 0,0456          		& \si{\newton\metre}           				\\
+			$M_{X_1}$                   & 0,0013           		& \si{\newton\metre}            		\\
+			$M_{Y_1}$            		& 0,0151      			& \si{\newton\metre}       \\
+			$M_{Z_1}$            		& 0,0113      			& \si{\newton\metre}      \\
+			$M_X$            			& 0,0158          		& \si{\newton\metre}    \\
+			$M_Y$                		& 0,0757          		& \si{\newton\metre}          \\
+			$M_Z$                		& 0,0569  				& \si{\newton\metre}   \\
+			
+			\bottomrule
+		\end{tabular}
+	\end{threeparttable}
+\end{table}
+
+
+\begin{figure}[ht]
+	\centerfloat{\includegraphics[scale=0.7]{images/moments_chart.eps}}
+	
+	\caption{Распределение моментов по осям $Mx$, $My$, $Mz$ для различных источников воздействия: смещения центра масс, действия двигателей и их суммарного эффекта}
+	\label{fig:momentBars}
+\end{figure}
+
+На рисунке ~\cref{fig:momentBars} приведено графическое изображение полученных результатов.
+
+Таким образом, при заданных параметрах основной вклад в реактивные моменты вносит смещение центра карданова подвеса относительно центра масс КА, поэтому при компоновке КА указанное смещение должно быть минимизировано.
+
+Итак, на основании изложенного можно сделать вывод о том, что максимальные реактивные моменты, действующие на основание со стороны редукторных приводов во время их функционирования, для представленного набора исходных данных не превышают величину 0,1 \si{\newton\metre}.  Основной вклад в эти моменты вносят составляющие, возникающие от наличия смещения центра карданова подвеса УПК относительно центра масс КА.
+
+С помощью добавочных колец можно подобрать моменты инерции маховиков с целью уменьшения влияния реактивных моментов на КА.
+
+
 
 В таблице \cref{tab:tab_pref} приложения~\cref{app:B4} приведён список рекомендуемых
 к использованию стандартных префиксов.
