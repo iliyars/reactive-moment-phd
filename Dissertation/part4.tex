@@ -287,53 +287,64 @@ f_0 = 8000\ \mathrm{Гц}
 
 \subsubsection{Снятие нуля и оценка дрейфа}
 
-Гироскоп устанавливают в неподвижное положение на виброизолированном стенде. Выходной сигнал~$\omega_g(t)$ снимают в течение двух часов с частотой 
-\[
-f_s = \SI{100}{\hertz},
-\quad
-N = 2\ \mathrm{h}\times3600\ \mathrm{s}\times100\ \mathrm{Hz} = 720000
-\]
-измерений. Результаты приведены на рисунке~\ref{fig:gyro_earth}.
+Гироскоп устанавливают в неподвижное положение на виброизолированном стенде. Выходной сигнал~$\omega_g(t)$ снимают в течение двух часов с частотой $f_s = \SI{100}{\hertz}$
+Результаты приведены на рисунке~\ref{fig:gyroEarth}.
 
-Угловая скорость вращения Земли:
-\[
-\Omega_E = \frac{2\pi}{T_{\mathrm{сут}}}
-\approx 7.292\times10^{-5}\,\mathrm{rad/s}.
-\]
-При широте Санкт-Петербурга 
-\[
-\phi_{\mathrm{з}} = 59^\circ57'
-\]
-получаем проекцию на вертикальную ось гироскопа:
-\[
-\omega_e
-= \Omega_E\,\sin\phi_{\mathrm{з}}
-\approx 7.292\times10^{-5}\,\mathrm{rad/s}\,\times\sin(59^\circ57')
-\approx 6.32\times10^{-5}\,\mathrm{rad/s}
-\approx 0.00362\,\mathrm{deg/s}.
-\]
+\begin{figure}[ht]
+	\centerfloat{\includegraphics[scale=1]{matlab/gyroEarth.png}}
+	\caption{Измерение проекции угловой скорости вращения Земли}
+	\label{fig:gyroEarth}
+\end{figure}
 
-Математическое ожидание выходного сигнала:
+Математическое ожидание сигнала гироскопа:
 \begin{equation}
 	\bar{\omega}
 	= \frac{1}{N}\sum_{i=1}^{N}\omega_g(t_i)
 	\label{eq:mean}
 \end{equation}
 
+По расчетам среднее значение составляет 
+$
+\bar{\omega} = \SI{6,34 e-5}{\text{рад/c}}
+$
+
+Угловая скорость вращения Земли
+$\Omega_E = 2\pi/T_{\text{сут}}\approx \SI{7,292 e-5}{\text{рад/с}}.
+$
+На широте города Санкт-Петербург $\phi_{\mathrm{e}} = 59^\circ57'$ получаем проекцию на вертикальную ось гироскопа:
+\[
+\omega_e
+= \Omega_E\sin\phi_{\text{e}}
+\approx 7.292\cdot10^{-5}\sin(59^\circ57')
+\approx 6.32\times10^{-5}\text{рад/с}\\
+\]
+
 Скорректированное нулевое смещение:
 \begin{equation}
 	\bar{\omega}_0'
-	= \bar{\omega} - \omega_e
+	= \bar{\omega} - \omega_e = \SI{3,16 e-7}{\text{рад/c}}
 	\label{eq:omega_correct}
 \end{equation}
 
-Дрейф относительно скорректированного нуля:
+Оценка шумовой составляющей. Дисперсия определяется по формуле:
 \begin{equation}
-	\omega_{\mathrm{др}}(t_i)
-	= \omega_g(t_i) - \bar{\omega} - \omega_e
-	\label{eq:drift_def}
+	\sigma^2=\frac{1}{N-1}\sum_{i=1}^N(\omega_i-\bar{\omega})^2
+	\label{eq:disperssion}
 \end{equation}
 
+Дисперсия составляет: $\sigma^2=\SI{3,15 e-7}{\text{рад/c}} \approx \SI{0,006}{^\circ /c}$
+
+Коррекция температурного дрейфа.
+Гироскоп помещают в термокамеру и проводят серию замеров в диапазоне температур от 15 °C до \SI{40}{\degreeCelsius} с шагом \SI{5}{\degreeCelsius}.
+
+В каждом диапазоне вычисляем среднее смещение относительно нуля:
+
+\begin{equation}
+ 	\bar{\omega}(T_j)=frac{1}{N} \sum_{i=1}^N\omega_i(T_j)
+ 	\label{eq:omega_mean_T}
+\end{equation}
+ 
+ 
 Стандартное отклонение дрейфа:
 \begin{equation}
 	\sigma_{\mathrm{др}}
@@ -341,43 +352,18 @@ N = 2\ \mathrm{h}\times3600\ \mathrm{s}\times100\ \mathrm{Hz} = 720000
 	\label{eq:sigma}
 \end{equation}
 
-\subsubsection{Анализ спектра и Allan-девиация}
+Переход к угловому ускорению
+Численно дифференцируют исходный сигнал и температуру центральной разностью
 
-Для глубокого анализа случайных флуктуаций вычисляют Allan-девиацию:
-\[
-\sigma_y(\tau)
-= \sqrt{\frac{1}{2(M-1)}\sum_{k=1}^{M-1}
-	\Bigl(\bar{y}_{k+1}-\bar{y}_k\Bigr)^2},
-\]
-где 
-\[
-\bar{y}_k = \frac{1}{n}\sum_{i=(k-1)n+1}^{kn}\omega_{\mathrm{др}}(t_i),
-\quad
-n = \tau f_s,
-\quad
-M = \bigl\lfloor N/n\bigr\rfloor.
-\]
-Построенная кривая $\sigma_y(\tau)$ позволяет выделить участки, отвечающие угловому случайному блуждению (ARW), нестабильности смещения (bias instability) и т.д.
+Поскольку в дифференцировании константы $\bar{\omega}_0'$ и $\omega_e$ исчезают - окончательная формула для углового ускорения:
 
-\subsubsection{Учёт температурных эффектов}
 
-Температурная чувствительность гироскопа определялась в термостатируемом шкафу при температурах от +5 °C до +50 °C. Для каждой точки $T_j$ измеряли скорректированное нулевое смещение $\bar{\omega}_0'(T_j)$ и строили зависимость
-\[
-\delta\omega_0(T)
-= \bar{\omega}_0'(T) - \bar{\omega}_0'(T_0).
-\]
-По линейной аппроксимации находят коэффициент температурной чувствительности
-\[
-k_T = \frac{\mathrm{d}\omega_0}{\mathrm{d}T}.
-\]
-При последующих измерениях вводят окончательную корректировку:
-\[
-\omega_{\mathrm{corr}}(t_i)
-= \omega_g(t_i)
-- \bar{\omega}
-- \omega_e
-- k_T\bigl[T(t_i)-T_0\bigr].
-\]
+
+
+
+\subsection{Алгоритм измерения}
+
+ 
  
  
  
