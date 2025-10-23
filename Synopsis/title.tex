@@ -1,13 +1,16 @@
 \thispagestyle{empty}
 
 \noindent%
+\begin{flushright}
+	\large{На правах рукописи}
+\end{flushright}
 \begin{tabularx}{\textwidth}{@{}lXr@{}}%
-    & & \large{На правах рукописи}\\
+    
     \IfFileExists{images/logo.pdf}{\includegraphics[height=2.5cm]{logo}}{\rule[0pt]{0pt}{2.5cm}}  & &
     \ifnumequal{\value{showperssign}}{0}{%
         \rule[0pt]{0pt}{1.5cm}
     }{
-        \includegraphics[height=1.5cm]{personal-signature.png}
+        %\includegraphics[height=1.5cm]{personal-signature.png}
     }\\
 \end{tabularx}
 
@@ -39,7 +42,11 @@
 \newpage
 % оборотная сторона обложки
 \thispagestyle{empty}
-\noindent Работа выполнена в филиале АО \flqq Корпорация \glqq Комета \grqq -- \glqq НПЦ ОЭКН\grqq \frqq
+\noindent  Работа выполнена в федеральном государственном автономном образова
+тельном учреждении высшего образования «Санкт-Петербургский госу
+дарственный электротехнический университет «ЛЭТИ» им. В.И. Ульяно
+ва (Ленина)» на кафедре лазерных измерительных и навигационных си
+стем.
 
 \vspace{0.008\paperheight plus1fill}
 \noindent%
